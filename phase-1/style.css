@@ -25,6 +25,11 @@ header h1:hover{
     text-decoration: underline;
 }
 
+.header-nav-button-group h1{
+    margin: auto;
+    text-align: center;
+}
+
 button{
     background-color: #3d81db;
     border-radius: 3em;
@@ -38,7 +43,7 @@ button{
 
 
 .hero-section{
-    background: radial-gradient(circle at top center, #1e232f, #0d121f 50%);
+    background: radial-gradient(circle at top center, #1e232f, #0d121f 70%);
     padding-top: 3em;
 }
 
@@ -64,10 +69,34 @@ button{
 #about-section{
     background-image: url(assets/assets/images/laundromat-with-girl-legs.png);
     background-color: white;
-    height: 30em;
     width: 100%;
+    padding: 5em 0;
+    margin-top: 4em;
+    text-align: center;
+}
+
+.about-title{
+    text-align: center;
+    padding: 2em;
+    display: block;
+    
 }
 
 #about-section h1{
     color: black;
+    font-size: 4em;
+    margin: 0;
+}
+
+#about-section h2{
+    margin: 0;
+    color:blue;
+    font-size: 1em;
+    /* text-align: center; */
+}
+
+#about-section p{
+    text-align: center;
+    margin: auto;
+    max-width: 50em;
 }
