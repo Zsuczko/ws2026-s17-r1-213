@@ -1,0 +1,54 @@
+body{
+    background-color: #0d121f;
+}
+
+h1{
+    color: white;
+    font-weight: unset;
+}
+
+header{
+    display: flex;
+    margin: 1em;
+}
+nav{
+    display: flex;
+    gap: 2em;
+    font-size: 0.5em;
+}
+
+.main-navbar{
+
+    margin: auto;
+}
+h1:hover{
+    text-decoration: underline;
+}
+
+button{
+    background-color: #3d81db;
+    border-radius: 3em;
+    height: 3em;
+    padding: 0.2em;
+    width: 6em;
+    margin: auto;
+    color: white;
+    
+}
+
+
+.hero-section{
+    background: radial-gradient(circle at top center, #1e232f, #0d121f 50%);
+    padding-top: 3em;
+}
+
+
+#main-title{
+    text-align: center;
+    font-size: 4em;
+}
+
+
+.about-section{
+    background-image: url(assets/assets/images/laundromat-with-girl-legs.png);
+}
