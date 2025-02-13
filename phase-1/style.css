@@ -1,10 +1,26 @@
+/* datas */
+@font-face {
+    font-family: 'PlusJakartaSans';
+    src: url('assets/assets/fonts/PlusJakartaSans-VariableFont_wght.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+/* general */
+
 body{
     background-color: #0d121f;
+    font-family: 'PlusJakartaSans' ;
 }
 
 h1{
     color: white;
-    font-weight: unset;
+    /* font-size: 4em; */
+}
+main h1{
+    font-size: 2.4em;
+    margin: 0.3em;
 }
 
 header{
@@ -17,10 +33,37 @@ nav{
     font-size: 0.5em;
 }
 
-.main-navbar{
+section{
+    padding: 5em 0;
+    text-align: center;
+}
 
+small{
+    color: #71819a;
+    font-size: 1em;
+}
+
+/* general classes */
+
+.second-button{
+    background-color: #1a202c;
+    color: #a4b3c6;
+}
+
+
+.h2-title{
+    margin: 0;
+    color:#4e8cdd;
+    font-size: 1em;
+}
+
+
+/* navbar */
+
+.main-navbar{
     margin: auto;
 }
+
 header h1:hover{
     text-decoration: underline;
 }
@@ -41,6 +84,7 @@ button{
     
 }
 
+/* hero section */
 
 .hero-section{
     background: radial-gradient(circle at top center, #1e232f, #0d121f 70%);
@@ -51,6 +95,17 @@ button{
 #main-title{
     text-align: center;
     font-size: 4em;
+}
+
+#hero-gradient-title{
+    background: linear-gradient(to top, #a8bfdd, white);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+#hero-title-second{
+    color: #a8bfdd;
 }
 
 #hero-description{
@@ -66,13 +121,13 @@ button{
 }
 
 
+/* about section  */
+
 #about-section{
     background-image: url(assets/assets/images/laundromat-with-girl-legs.png);
     background-color: white;
     width: 100%;
-    padding: 5em 0;
     margin-top: 4em;
-    text-align: center;
 }
 
 .about-title{
@@ -84,19 +139,54 @@ button{
 
 #about-section h1{
     color: black;
-    font-size: 4em;
     margin: 0;
 }
 
-#about-section h2{
-    margin: 0;
-    color:blue;
-    font-size: 1em;
-    /* text-align: center; */
-}
 
 #about-section p{
     text-align: center;
     margin: auto;
     max-width: 50em;
+}
+
+
+/* how it works section  */
+.how-card{
+    width: 10em;
+    margin: 0 4em;
+    color: white;
+    font-size: 0.8em;
+}
+.how-card figure{
+    width: 10em;
+}
+
+.how-card span{
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+    background-color: #3d81db;
+    border-radius: 100%;
+    width: 3em;
+    height: 3em;
+    text-align: center;
+
+    float: left;
+}
+
+.how-card div{
+    background-color: white;
+    border-radius: 20%;
+    height: 10em;
+}
+
+
+#how-card-section{
+    display: flex;
+    
+    margin: auto;
+    text-align: center;
+    justify-content: center;
 }
