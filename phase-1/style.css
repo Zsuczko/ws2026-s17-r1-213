@@ -50,12 +50,19 @@ small{
     color: #a4b3c6;
 }
 
+.button-group{
+    display: inline-flex;
+    gap: 1.5rem;
+    justify-content: center;
+}
 
 .h2-title{
     margin: 0;
     color:#4e8cdd;
     font-size: 1em;
 }
+
+
 
 
 /* navbar */
@@ -116,8 +123,6 @@ button{
 
 .hero-button-group{
     margin: 2em 0 0 0;
-    display: block;
-    text-align: center;
 }
 
 
@@ -152,8 +157,6 @@ button{
 
 /* how it works section  */
 .how-card{
-    width: 10em;
-    margin: 0 4em;
     color: white;
     font-size: 0.8em;
 }
