@@ -217,6 +217,7 @@ button{
 
 .why-to-choose-section{
     background-color: white;
+    width: 100%;
     color: black;
     margin: auto;
 }
@@ -285,7 +286,7 @@ button{
     flex: 1;
     max-width: 100%;
     text-align: left;
-    margin-left: 8rem;
+    margin-left: 12rem;
     margin-bottom: 2rem;
     display: grid;
     gap: 1em;
@@ -315,17 +316,18 @@ button{
     padding: 0;
     margin: 0;
     max-height: 30em;
-    max-width: 60%;
+    max-width: 55%;
 }
 
 .download-img img{
     bottom: -1rem;
     z-index: -1;
-    left: 10%;
+    left: 15%;
     position: relative;
     margin: 0;
     border: #3d414c solid 0.5em;
     border-radius: 10%;
+    max-width: 55rem;
 }
 
 
@@ -333,5 +335,52 @@ button{
 /* location section */
 
 .location{
-    background-color: white;
+    background: linear-gradient(to top, #edf6ff, white);
+    color: black;
+    padding: 3rem 0;
+}
+
+.location h1{
+    color: black;
+}
+
+
+.location-card-group{
+    display: flex;    
+    justify-content: center;
+    gap: 3rem;
+    margin: auto;
+    margin: 3rem 0;
+}
+
+.location-card{
+    display: flex;
+    flex-direction: column;
+    gap: 1.3rem;
+    width: 20rem;
+    padding: 2em;
+    border: #d4e1f0 solid 0.1em;
+    border-radius: 1em;
+    text-align: left;
+}
+
+.location-card h3{
+    margin: 0;
+}
+.location-card hr{
+    width: 100%;
+    background-color: #e8edf2;
+    height: 0.15em;
+    border: unset;
+}
+
+.location p{
+    text-align: left;
+}
+
+
+/* footer */
+
+footer{
+    display:flex;
 }
