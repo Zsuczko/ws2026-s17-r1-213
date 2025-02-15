@@ -54,6 +54,17 @@ p{
     margin: auto;
 }
 
+button{
+    background-color: var(--button-color);
+    border-radius: 3em;
+    padding: 0.2em;
+    padding: 1em 1.5em;
+    margin: auto;
+    color: white;
+    border: none;
+
+}
+
 /* general classes */
 
 .second-button{
@@ -99,16 +110,7 @@ header h1:hover{
     text-align: center;
 }
 
-button{
-    background-color: var(--button-color);
-    border-radius: 3em;
-    padding: 0.2em;
-    padding: 1em 1.5em;
-    margin: auto;
-    color: white;
-    border: none;
 
-}
 
 /* hero section */
 
@@ -383,4 +385,27 @@ button{
 
 footer{
     display:flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 4rem 9rem;
+    gap: 3rem;
+}
+footer p{
+    margin: 0;
+    color: #75849d;
+}
+
+.footer-information{
+    display: flex;
+    gap: 2rem;
+}
+
+.footer-information a{
+    color: #579cea;
+    text-decoration: none;
+}
+
+.footer-vertical-line{
+    width: 0.1em;
+    background-color: #25344b;
 }
