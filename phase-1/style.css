@@ -34,7 +34,7 @@ html{
 
 body{
     background-color: var(--background-color);
-    font-family: 'PlusJakartaSans' ;  
+    font-family: 'PlusJakartaSans';  
 }
 
 h1{
@@ -80,7 +80,12 @@ button{
     margin: auto;
     color: white;
     border: none;
+    transition: 0.3s;
 
+}
+
+button:hover{
+    filter: brightness(0.8);
 }
 
 a{
