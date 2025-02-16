@@ -384,6 +384,11 @@ header h1:hover::after{
 .download-btn{
     background-color: unset;
     padding: 0;
+    transition: 0.3s;
+}
+
+.download-btn:hover{
+    transform: scale(1.1);
 }
 
 .download-img{
