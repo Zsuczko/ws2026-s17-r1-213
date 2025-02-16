@@ -307,7 +307,22 @@ header h1:hover{
     height: 3em;
     width: 3em;
     border-radius: 20%;
+    transition: 0.5s ease;
 }
+
+.why-card figure img{
+    transition: 0.5s ease;
+    height: auto;
+}
+
+.why-card:hover figure{
+    transform: scale(1.4);
+}
+
+.why-card:hover img{
+    transform: scale(1.4);
+}
+
 
 /* download app */
 
@@ -399,6 +414,7 @@ header h1:hover{
     border: #d4e1f0 solid 0.1em;
     border-radius: 1em;
     text-align: left;
+    transition: 0.5s;
 }
 
 .location-card h3{
@@ -419,7 +435,7 @@ header h1:hover{
 .location-card:hover{
     border: #3d81db solid 0.1em;
     transform: translateY(-0.4em);
-    transition: 0.5s;
+  
 }
 
 
