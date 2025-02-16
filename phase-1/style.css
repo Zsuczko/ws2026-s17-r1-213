@@ -14,9 +14,13 @@
 
 /* general */
 
+html{
+    scroll-behavior: smooth;
+}
+
 body{
     background-color: var(--background-color);
-    font-family: 'PlusJakartaSans' ;
+    font-family: 'PlusJakartaSans' ;  
 }
 
 h1{
@@ -63,6 +67,11 @@ button{
     color: white;
     border: none;
 
+}
+
+a{
+    color: unset;
+    text-decoration: unset;
 }
 
 /* general classes */
@@ -265,18 +274,18 @@ header h1:hover::after{
 
 /* Why to choose us section */
 
-.why-to-choose-section{
+#why-to-choose-section{
     background-color: white;
     width: 100%;
     color: black;
     margin: auto;
 }
 
-.why-to-choose-section h1{
+#why-to-choose-section h1{
     color: black;
 }
 
-.why-to-choose-section small{
+#why-to-choose-section small{
     display: block;
     max-width: 38rem;
     margin: auto;
@@ -339,7 +348,7 @@ header h1:hover::after{
 
 /* download app */
 
-.download-app{
+#download-app{
     padding-bottom: 0;
     padding-top: 3rem;
     display: flex;
@@ -399,13 +408,13 @@ header h1:hover::after{
 
 /* location section */
 
-.location{
+#location{
     background: linear-gradient(to top, #edf6ff, white);
     color: black;
     padding: 3rem 0;
 }
 
-.location h1{
+#location h1{
     color: black;
 }
 
@@ -440,7 +449,7 @@ header h1:hover::after{
     border: unset;
 }
 
-.location p{
+#location p{
     text-align: left;
 }
 
