@@ -84,10 +84,22 @@ button{
     font-size: 1em;
 }
 
+.circle{
+    position: absolute;
+    height: 40em;
+    width: 40em;
+    border: #191e2a solid 6rem;
+    border-radius: 100%;
+}
+
 
 
 
 /* navbar */
+
+header{
+    padding: 0.7rem 8%;
+}
 
 .main-navbar{
     margin: auto;
@@ -117,12 +129,16 @@ header h1:hover{
 .hero-section{
     background: radial-gradient(circle at top center, #1e232f, #0d121f 70%);
     padding-top: 3em;
+    overflow: hidden;
+    position: relative;
 }
 
 
 #main-title{
     text-align: center;
     font-size: 4em;
+    z-index: 1;
+    position: relative;
 }
 
 #hero-gradient-title{
@@ -140,11 +156,30 @@ header h1:hover{
     color: white;
     margin: auto;
     text-align: center;
+    z-index: 1;
+    position: relative;
 }
 
 .hero-button-group{
     margin: 2em 0 0 0;
+    z-index: 1;
+    position: relative;
 }
+
+.hero-circle-one{
+    /* background-color: #191e2a; */
+    left: -35rem;
+    bottom: -33rem;
+}
+
+.hero-circle-two{
+    /* background-color: #191e2a; */
+
+    left: 70%;
+    bottom: 10rem;
+    z-index: 1;  
+}
+
 
 
 
@@ -389,6 +424,9 @@ footer{
     align-items: center;
     padding: 4rem 9rem;
     gap: 3rem;
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
 }
 footer p{
     margin: 0;
@@ -398,6 +436,8 @@ footer p{
 .footer-information{
     display: flex;
     gap: 2rem;
+    position: relative;
+    z-index: 1;
 }
 
 .footer-information a{
@@ -408,4 +448,10 @@ footer p{
 .footer-vertical-line{
     width: 0.1em;
     background-color: #25344b;
+}
+
+.footer-circle{
+    left: 50%;
+    transform: translate(-50%);
+    bottom: -43rem;
 }
