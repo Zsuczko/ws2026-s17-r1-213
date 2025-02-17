@@ -277,9 +277,11 @@ header h1:hover::after{
 .how-card{
     color: white;
     font-size: 0.8em;
+
 }
 .how-card figure{
-    width: 10em;
+    width: 15em;
+    position: relative;
 }
 
 .how-card span{
@@ -287,20 +289,38 @@ header h1:hover::after{
     display: flex;
     justify-content: center;
     align-items: center;
+    left: 0.2em;
 
     background-color: var(--button-color);
     border-radius: 100%;
-    width: 3em;
-    height: 3em;
+    width: 2.3em;
+    height: 2.3em;
     text-align: center;
 
     float: left;
+
+    font-size: 1.5em;
 }
 
-.how-card div{
+/* .how-card figure div{
+    position: absolute;
+
+} */
+.how-card-animation{
     background-color: white;
-    border-radius: 20%;
-    height: 10em;
+    border-radius: 10%;
+    height: 13em;
+    width: 13em;
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    z-index: -1;
+}
+
+.how-card-div{
+    position: relative;
+    height: 15em;
+    width: 15em;
 }
 
 
@@ -401,7 +421,7 @@ header h1:hover::after{
     flex: 1;
     max-width: 100%;
     text-align: left;
-    margin-left: 12rem;
+    margin-left: 13%;
     margin-bottom: 2rem;
     display: grid;
     gap: 1em;
