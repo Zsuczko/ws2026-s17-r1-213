@@ -297,6 +297,8 @@ header h1:hover::after{
     height: 2.3em;
     text-align: center;
 
+    border: var(--background-color) solid 0.3em;
+
     float: left;
 
     font-size: 1.5em;
