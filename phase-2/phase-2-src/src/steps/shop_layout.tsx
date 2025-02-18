@@ -6,10 +6,13 @@ import { shoplayoutElements } from '../lib/models'
 
 const ShopLayout:React.FC =() =>{
 
-    const [draggedItem, setDraggedItem] = useState<HTMLElement | null>(null);
-    const [targetItem, setTargetItem] = useState<JSX.Element[]>([])
 
-    const [layout, setlayout] = useState<shoplayoutElements[]>(Array(30).fill({id:undefined, name:undefined, class:"empty", src:undefined}))
+    const [layout, setLayout] = useState<shoplayoutElements[]>(Array(30).fill(null).map((_,index)=>({
+        id:index,
+        name:undefined,
+        class:"empty",
+        src:undefined
+    })))
 
     const [elements, setElements] = useState<shoplayoutElements[]>([
         {id:1, name:"Washer (8kg)", class:"washer", src:washingMachine},
@@ -19,26 +22,6 @@ const ShopLayout:React.FC =() =>{
         {id:5, name:"Waiting area", class:"", src:armchair},
         {id:6, name:"Folding table", class:"", src:space},
     ])
-
-
-    // const handleDragStart = (event: React.DragEvent<HTMLDivElement>) =>{
-    //     setDraggedItem(event.currentTarget)
-    //     event.dataTransfer.setData('text/plain', event.currentTarget.id)
-    // }
-
-    // const handleDragOver = (event: React.DragEvent<HTMLDivElement>)=>{
-    //     event.preventDefault()
-    // }
-
-    // const handleDrop = (event: React.DragEvent<HTMLDivElement>) => {
-    //     if(draggedItem) {
-    //         const clonedItem = draggedItem.cloneNode(true) as HTMLElement;
-    //         clonedItem.removeAttribute("draggable")
-    //         console.log(draggedItem.innerHTML)
-    //         setTargetItem((prev) => [...prev, <div key={prev.length}>{clonedItem.innerHTML}</div>])
-    //         setDraggedItem(null)
-    //     }   
-    // }
 
 
     
@@ -53,8 +36,15 @@ const ShopLayout:React.FC =() =>{
     const handleDrop = (e: React.DragEvent, index: number) => {
         e.preventDefault();
         const droppedItem = JSON.parse(e.dataTransfer.getData('item'));
+
+        console.log(index)
+        console.log(droppedItem)
+
+
+        const newLayoutItem  = [...layout]
+        newLayoutItem[index] = droppedItem
         
-        setlayout([...layout, droppedItem]);
+        setLayout(newLayoutItem);
     };
 
     return(
