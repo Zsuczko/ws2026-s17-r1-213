@@ -1,15 +1,15 @@
 import washingMachine from '../assets/washing-machine.svg'
 import space from '../assets/space.svg'
 import armchair from '../assets/armchair.svg'
-import { useState } from 'react'
+import { JSX, useState } from 'react'
 
 const ShopLayout:React.FC =() =>{
 
-    const [draggedItem, setDraggedItem] = useState<string | null>(null);
-    const [targetItem, setTargetItem] = useState<string[]>([])
+    const [draggedItem, setDraggedItem] = useState<HTMLElement | null>(null);
+    const [targetItem, setTargetItem] = useState<JSX.Element[]>([])
 
-    const handleDragStart = (event: React.DragEvent<HTMLDivElement>, item:string) =>{
-        setDraggedItem(item)
+    const handleDragStart = (event: React.DragEvent<HTMLDivElement>) =>{
+        setDraggedItem(event.currentTarget)
     }
 
     const handleDragOver = (event: React.DragEvent<HTMLDivElement>)=>{
@@ -18,7 +18,7 @@ const ShopLayout:React.FC =() =>{
 
     const handleDrop = () => {
         if(draggedItem) {
-            setTargetItem((prev) => [...prev, draggedItem])
+            setTargetItem((prev) => [...prev, <div key={prev.length}>{draggedItem.innerHTML}</div>])
             setDraggedItem(null)
         }
     }
@@ -28,7 +28,7 @@ const ShopLayout:React.FC =() =>{
         <h3>Shop layout</h3>
 
         <div className="dnd-row">
-        <div className="grid-item washer">
+        <div key={0} className="grid-item washer" draggable onDragStart={handleDragStart} >
             <img src={washingMachine} alt="Washing Machine" />
             <span>Washer (8 kg)</span>
         </div>
@@ -72,8 +72,24 @@ const ShopLayout:React.FC =() =>{
             <span>Dryer (25 kg)</span>
         </div>
         <div className="grid-item entrance"></div>
-        <div className="grid-item empty"></div>
-        <div className="grid-item empty"></div>
+        <div className="grid-item empty" onDrop={handleDrop} onDragOver={handleDragOver}>
+            {targetItem.map((item, index) => (
+            <div
+                key={index}
+            >
+                {item} 
+            </div>
+            ))}
+        </div>
+        <div className="grid-item empty" onDrop={handleDrop} onDragOver={handleDragOver}>
+            {targetItem.map((item, index) => (
+            <div
+                key={index}
+            >
+                {item}
+            </div>
+            ))}
+        </div>
         <div className="grid-item empty"></div>
         <div className="grid-item empty"></div>
         <div className="grid-item empty"></div>
