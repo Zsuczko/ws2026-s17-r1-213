@@ -1,5 +1,5 @@
 export interface shoplayoutElements{
-    id?: number,
+    index?:number
     name?: string,
     class?: string,
     src?:string

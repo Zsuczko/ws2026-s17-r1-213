@@ -8,20 +8,61 @@ const ShopLayout:React.FC =() =>{
 
 
     const [layout, setLayout] = useState<shoplayoutElements[]>(Array(30).fill(null).map((_,index)=>({
-        id:index,
-        name:undefined,
-        class:"empty",
-        src:undefined
+        index:index,
+        class:"empty"
     })))
 
+    const [dragOverIndex, setDragOverIndex] = useState<number | null>(null)
+
     const [elements, setElements] = useState<shoplayoutElements[]>([
-        {id:1, name:"Washer (8kg)", class:"washer", src:washingMachine},
-        {id:2, name:"Washer (11kg)", class:"washer", src:washingMachine},
-        {id:3, name:"Dryer (18kg)", class:"dryer", src:washingMachine},
-        {id:4, name:"Dryer (25kg)", class:"dryer", src:washingMachine},
-        {id:5, name:"Waiting area", class:"", src:armchair},
-        {id:6, name:"Folding table", class:"", src:space},
+        {name:"Washer (8kg)", class:"washer", src:washingMachine},
+        {name:"Washer (11kg)", class:"washer", src:washingMachine},
+        {name:"Dryer (18kg)", class:"dryer", src:washingMachine},
+        {name:"Dryer (25kg)", class:"dryer", src:washingMachine},
+        {name:"Waiting area", class:"", src:armchair},
+        {name:"Folding table", class:"", src:space},
     ])
+
+
+    const handleClick = (e:React.MouseEvent, index:number)=>{
+        console.log("single click")
+        if(layout[index].class !== "empty" ){
+            const emptyItem = {index:index,
+                class:"empty"}
+            const newLayoutItem  = [...layout]
+            newLayoutItem[index] = emptyItem
+            
+            setLayout(newLayoutItem);
+        }
+    }
+
+    
+    const handleDoubleClick = (e:React.MouseEvent, index:number)=>{
+        console.log("double click")
+        const wallItem = {
+            index:index,
+            name:"Wall",
+            class:"wall",
+            src:undefined
+        }
+        const newLayoutItem  = [...layout]
+        newLayoutItem[index] = wallItem
+        
+        setLayout(newLayoutItem);
+    }
+
+    const handlerRightClick = (e:React.MouseEvent, index:number)=>{
+        e.preventDefault()
+        const entranceItem = {
+            index:index,
+            class:"entrance"
+        }
+
+        const newLayoutItem = [...layout]
+        newLayoutItem[index] = entranceItem
+        setLayout(newLayoutItem)
+    }
+
 
 
     
@@ -29,17 +70,23 @@ const ShopLayout:React.FC =() =>{
         e.dataTransfer.setData('item', JSON.stringify(item));
     };
 
-    const handleDragOver = (e: React.DragEvent) => {
+    const handleDragOver = (e: React.DragEvent, index:number) => {
         e.preventDefault();
+        setDragOverIndex(index);
+        console.log(dragOverIndex)
+    };
+
+    const handleDragLeave = () => {
+        setDragOverIndex(null);
     };
 
     const handleDrop = (e: React.DragEvent, index: number) => {
         e.preventDefault();
         const droppedItem = JSON.parse(e.dataTransfer.getData('item'));
 
-        console.log(index)
-        console.log(droppedItem)
+        droppedItem.index = index;
 
+        setDragOverIndex(null);
 
         const newLayoutItem  = [...layout]
         newLayoutItem[index] = droppedItem
@@ -63,74 +110,22 @@ const ShopLayout:React.FC =() =>{
 
         <div className="grid">
 
-        {layout.map(item =>(
-            <div className={"grid-item " + item.class}  onDrop={(e) =>{handleDrop(e, item.id!)}} onDragOver={handleDragOver}>
+        {layout.map((item) =>(
+            <div className={`grid-item ${item.class} ${item.index === dragOverIndex?"grid-item-drag-over":""}`}  
+            onDrop={(e) =>{handleDrop(e, item.index!)}} 
+            onDragOver={(e) =>{handleDragOver(e, item.index!)}} 
+            onDragLeave={handleDragLeave}
+            onClick={(e)=>handleClick(e, item.index!)}
+            onDoubleClick={(e)=>{handleDoubleClick(e, item.index!)}}
+            onContextMenu={(e)=>{handlerRightClick(e, item.index!)}}>
                 {item.name ? <>
-                    <img src={item.src} alt={item.name} />
+                    {item.src ? <img src={item.src} alt={item.name} />:<></>}
                     <span>{item.name}</span>
                 </> : <span></span>}
             </div>
         ))}
 
 
-
-        {/* <div className="grid-item empty"></div>
-        <div className="grid-item wall">
-            <span>Wall</span>
-        </div>
-        <div className="grid-item washer">
-            <img src={washingMachine} alt="Washing Machine" />
-            <span>Washer (11 kg)</span>
-        </div>
-        <div className="grid-item dryer">
-            <img src={washingMachine} alt="Drying Machine" />
-            <span>Dryer (25 kg)</span>
-        </div>
-        <div className="grid-item dryer">
-            <img src={washingMachine} alt="Drying Machine" />
-            <span>Dryer (25 kg)</span>
-        </div>
-        <div className="grid-item entrance"></div>
-        <div className="grid-item empty" onDrop={handleDrop} onDragOver={handleDragOver}>
-            {targetItem.map((item, index) => (
-            <div
-                key={index}
-            >
-                {item.type} 
-            </div>
-            ))}
-        </div>
-        <div className="grid-item empty" onDrop={(event) => handleDrop(event)} onDragOver={(event) => handleDragOver(event)}>
-            {targetItem.map((item, index) => (
-            <div
-                key={index}
-            >
-                {item.type}
-            </div>
-            ))}
-        </div>
-        <div className="grid-item empty"></div>
-        <div className="grid-item empty"></div>
-        <div className="grid-item empty"></div>
-        <div className="grid-item empty"></div>
-        <div className="grid-item empty"></div>
-        <div className="grid-item empty"></div>
-        <div className="grid-item empty"></div>
-        <div className="grid-item empty"></div>
-        <div className="grid-item empty"></div>
-        <div className="grid-item empty"></div>
-        <div className="grid-item empty"></div>
-        <div className="grid-item empty"></div>
-        <div className="grid-item empty"></div>
-        <div className="grid-item empty"></div>
-        <div className="grid-item empty"></div>
-        <div className="grid-item empty"></div>
-        <div className="grid-item empty"></div>
-        <div className="grid-item empty"></div>
-        <div className="grid-item empty"></div>
-        <div className="grid-item empty"></div>
-        <div className="grid-item empty"></div>
-        <div className="grid-item empty"></div> */}
         </div>
     </>
     )

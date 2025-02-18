@@ -391,3 +391,12 @@ input, textarea, select{
 .input-time {
   max-width: 7rem;
 }
+
+.grid-item-drag-over{
+  background-color: lightgray;
+  opacity: 0.25;
+}
+/* 
+.grid-item.wall{
+  background-color: darkgrey;
+} */
