@@ -5,7 +5,10 @@ import maximize from '../assets/maximize.svg';
 
 const GeneralInformation:React.FC<{onChange:(page:number)=>void}> = (props)=> {
 
-  const [postalCode, setPostalCode] = useState<number>(0)
+
+  const [isChecking, setIsChecking] = useState<boolean>(false)
+
+  const [postalCode, setPostalCode] = useState<string>("")
   const [name, setName] = useState<string>("")
   const [description, setDescription] = useState<string>("")
   const [city, setCity] = useState<string>("")
@@ -13,84 +16,123 @@ const GeneralInformation:React.FC<{onChange:(page:number)=>void}> = (props)=> {
   const [openAt, setOpenAt] = useState<string>("Every Day")
   const [openFrom, setOpenFrom] = useState<string>("")
   const [openTo, setOpenTo] = useState<string>("")
+
+
+  const handlePostalCodeChange = (e: React.ChangeEvent<HTMLInputElement>) =>{
+    const postal = e.target.value.replace(/[^0-9]/g, "").slice(0, 4)
+    setPostalCode(postal)
+  }
   
+  function nextPage(){
+    if(name.length<3 || description.length<10 || postalCode.length<4 || city.length<3 || address.length<5 || openFrom.length<5 || openTo.length<5){
+      setIsChecking(true)
+    }
 
-    return(
-        <>
-         <header className="header">
-            <h1>Register a new location</h1>
-            <div className="steps">
-            <button className="step current">
-              1
-            </button>
-            <div className="step-divider dashed"></div>
-            <button className="step">2</button>
-            <div className="step-divider dashed"></div>
-            <button className="step">3</button>
-            <div className="step-divider dashed"></div>
-            <button className="step" disabled>4</button>
-            </div>
-              
-            <button className="fullscreen-btn">
-              <img src={maximize} alt="Maximize" />
-            </button>
-          </header>
-        <main className="main">
-        <h2>Information about the location</h2>
+    else{
+      props.onChange(2);
+    }
+  }
+
+  return(
+      <>
+        <header className="header">
+          <h1>Register a new location</h1>
+          <div className="steps">
+          <button className="step current">
+            1
+          </button>
+          <div className="step-divider dashed"></div>
+          <button className="step">2</button>
+          <div className="step-divider dashed"></div>
+          <button className="step">3</button>
+          <div className="step-divider dashed"></div>
+          <button className="step" disabled>4</button>
+          </div>
+            
+          <button className="fullscreen-btn">
+            <img src={maximize} alt="Maximize" />
+          </button>
+        </header>
+      <main className="main">
+      <h2>Information about the location</h2>
+      <div className="input-group">
+        <label htmlFor="input-1">Name</label>
+        <input type="text" id="input-1" autoComplete="new-password" className={isChecking && name.length<3?"error":""} value={name} onChange={(e)=>{setName(e.target.value)}}/>
+        {isChecking && name.length<3?
+        name.length!==0?
+        <span className="input-error">Must be at least 3 character long</span>:
+        <span className="input-error">This field is required</span>:<></>}
+      </div>
+      <div className="input-group">
+        <label htmlFor="textarea">Description</label>
+        <textarea id="textarea" rows={5} className={isChecking && description.length<10?"error":""} autoComplete="new-password" value={description} onChange={(e)=>{setDescription(e.target.value)}}></textarea>
+        {isChecking && description.length<10?
+        description.length!==0?
+        <span className="input-error">Must be at least 10 character long</span>:
+        <span className="input-error">This field is required</span>:<></>}
+      </div>
+
+      <div className="input-row">
+        <div className="input-group" id='postal-group'>
+          <label htmlFor="postal">Postal code</label>
+          <input type="text" id="postal" pattern='/d{4}' className={isChecking && postalCode.length<4?"error":""}  maxLength={4} inputMode='numeric' onInput={handlePostalCodeChange} value={postalCode} autoComplete="new-password"/>
+          {isChecking && postalCode.length<4?
+        postalCode.length!==0?
+        <span className="input-error">Must be at least 4 character long</span>:
+        <span className="input-error">This field is required</span>:<></>}
+        </div>
         <div className="input-group">
-          <label htmlFor="input-1">Name</label>
-          <input type="text" id="input-1" autoComplete="new-password" value={name} onChange={(e)=>{setName(e.target.value)}}/>
+          <label htmlFor="city">City</label>
+          <input type="text" id="city" className={isChecking && city.length<3?"error":""}  autoComplete="new-password" value={city} onChange={(e)=>{setCity(e.target.value)}}/>
+          {isChecking && city.length<3?
+        city.length!==0?
+        <span className="input-error">Must be at least 3 character long</span>:
+        <span className="input-error">This field is required</span>:<></>}
         </div>
         <div className="input-group">
-          <label htmlFor="textarea">Description</label>
-          <textarea id="textarea" rows={5} autoComplete="new-password" value={description} onChange={(e)=>{setDescription(e.target.value)}}></textarea>
+          <label htmlFor="address">Address</label>
+          <input type="text" id="address" className={isChecking && address.length<3?"error":""}   autoComplete="new-password" value={address} onChange={(e)=>{setAddress(e.target.value)}}/>
+          {isChecking && address.length<5?
+        address.length!==0?
+        <span className="input-error">Must be at least 5 character long</span>:
+        <span className="input-error">This field is required</span>:<></>}
         </div>
+      </div>
+      
+      <hr />
+      
+      <h3>Operational hours</h3>
 
-        <div className="input-row">
-          <div className="input-group" id='postal-group'>
-            <label htmlFor="postal">Postal code</label>
-           <PostalInput onChange={setPostalCode}></PostalInput>
-          </div>
-          <div className="input-group">
-            <label htmlFor="city">City</label>
-            <input type="text" id="city" autoComplete="new-password" value={city} onChange={(e)=>{setCity(e.target.value)}}/>
-          </div>
-          <div className="input-group">
-            <label htmlFor="address">Address</label>
-            <input type="text" id="address"  autoComplete="new-password" value={address} onChange={(e)=>{setAddress(e.target.value)}}/>
-          </div>
-        </div>
-        
-        <hr />
-        
-        <h3>Operational hours</h3>
+      <div className="input-group">
+        <label htmlFor="select">Open at</label>
+        <select id="select" onChange={(e)=>{setOpenAt(e.target.value)}}>
+          <option value="Every Day" >Every Day</option>
+          <option value="Weekdays" >Weekdays</option>
+          <option value="Weekends" >Weekends</option>
+        </select>
+      </div>
 
-        <div className="input-group">
-          <label htmlFor="select">Open at</label>
-          <select id="select" onChange={(e)=>{setOpenAt(e.target.value)}}>
-            <option value="Every Day" >Every Day</option>
-            <option value="Weekdays" >Weekdays</option>
-            <option value="Weekends" >Weekends</option>
-          </select>
+      <div className="input-row">
+        <div className="input-group input-time">
+          <label htmlFor="from">From</label>
+          <input type="time" id="from"  className={isChecking && openFrom.length<5?"error":""} autoComplete="new-password" onChange={(e)=>{setOpenFrom(e.target.value)}}/>
+          {isChecking && openFrom.length<5?
+        <span className="input-error">This field is required</span>:<></>}
         </div>
-
-        <div className="input-row">
-          <div className="input-group input-time">
-            <label htmlFor="from">From</label>
-            <input type="time" id="from" autoComplete="new-password" onChange={(e)=>{setOpenFrom(e.target.value)}}/>
-          </div>
-          <div className="input-group input-time">
-            <label htmlFor="to">To</label>
-            <input type="time" id="to" autoComplete="new-password" onChange={(e)=>{setOpenTo(e.target.value)}}/>
-          </div>
+        <div className="input-group input-time">
+          <label htmlFor="to">To</label>
+          <input type="time" id="to"  className={isChecking && openTo.length<5?"error":""} autoComplete="new-password" onChange={(e)=>{setOpenTo(e.target.value)}}/>
+          {isChecking && openTo.length<5?
+        <span className="input-error">This field is required</span>:<></>}
         </div>
-        </main>
-        <footer className="footer">
-          <button className="btn" disabled>Back</button>
-          <button className="btn" onClick={()=>{props.onChange(2)}}>Next</button>
-        </footer>
-        </>
-    );
+      </div>
+      </main>
+      <footer className="footer">
+        <button className="btn" disabled>Back</button>
+        <button className="btn" onClick={nextPage}>Next</button>
+      </footer>
+      </>
+  );
 }
 
 
