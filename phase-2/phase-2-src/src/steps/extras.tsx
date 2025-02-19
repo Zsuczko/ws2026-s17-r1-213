@@ -3,12 +3,12 @@ import maximize from '../assets/maximize.svg'
 
 const Extras:React.FC<{onChange:(page:number)=> void}> = (props) => {
     
-    const [parkingRadio, setParkingRadio] = useState("Easy")
-    const [freeWiFi, setFreeWifi] = useState(false)
-    const [accesible, setAccesible] = useState(false)
-    const [loungeArea, setLoungeArea] = useState(false)
-    const [bgMusic, setBgMusic] = useState(false)
-    const [personalCS, setPersonalCS] = useState(false)
+    const [parkingRadio, setParkingRadio] = useState<string>("Easy")
+    const [freeWiFi, setFreeWifi] = useState<boolean>(false)
+    const [accesible, setAccesible] = useState<boolean>(false)
+    const [loungeArea, setLoungeArea] = useState<boolean>(false)
+    const [bgMusic, setBgMusic] = useState<boolean>(false)
+    const [personalCS, setPersonalCS] = useState<boolean>(false)
 
     useEffect(()=>{
         console.log(parkingRadio)

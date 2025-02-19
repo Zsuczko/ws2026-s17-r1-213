@@ -10,7 +10,7 @@ import Success from './steps/success'
 
 function App() {
 
-  const [page, setPage] = useState(1)
+  const [page, setPage] = useState<number>(1)
 
   return (
     <>

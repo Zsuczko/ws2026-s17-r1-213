@@ -69,17 +69,17 @@ const ShopLayout:React.FC<{onChange:(page:number)=>void}> =(props) =>{
     
     const handleDragStart = (e: React.DragEvent, item: typeof elements[0]) => {
         e.dataTransfer.setData('item', JSON.stringify(item));
-    };
+    }
 
     const handleDragOver = (e: React.DragEvent, index:number) => {
         e.preventDefault();
         setDragOverIndex(index);
         console.log(dragOverIndex)
-    };
+    }
 
     const handleDragLeave = () => {
         setDragOverIndex(null);
-    };
+    }
 
     const handleDrop = (e: React.DragEvent, index: number) => {
         e.preventDefault();
@@ -93,7 +93,10 @@ const ShopLayout:React.FC<{onChange:(page:number)=>void}> =(props) =>{
         newLayoutItem[index] = droppedItem
         
         setLayout(newLayoutItem);
-    };
+    }
+
+
+
 
     return(
     <>
