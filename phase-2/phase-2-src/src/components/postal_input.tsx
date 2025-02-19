@@ -14,7 +14,7 @@ const PostalInput:React.FC<{onChange:(postalCode: number) => void}> = (props) =>
     }
 
     return(
-        <input type="text" id="postal" pattern='/d{4}' maxLength={4} inputMode='numeric' onInput={handlePostalCodeChange} value={postalCode}/>
+        <input type="text" id="postal" pattern='/d{4}' maxLength={4} inputMode='numeric' onInput={handlePostalCodeChange} value={postalCode} autoComplete="new-password"/>
     );
 }
 

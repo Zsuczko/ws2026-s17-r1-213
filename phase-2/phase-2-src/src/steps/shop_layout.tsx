@@ -1,10 +1,11 @@
 import washingMachine from '../assets/washing-machine.svg'
 import space from '../assets/space.svg'
 import armchair from '../assets/armchair.svg'
-import { JSX, useState } from 'react'
+import { useState } from 'react'
 import { shoplayoutElements } from '../lib/models'
+import maximize from '../assets/maximize.svg'
 
-const ShopLayout:React.FC =() =>{
+const ShopLayout:React.FC<{onChange:(page:number)=>void}> =(props) =>{
 
 
     const [layout, setLayout] = useState<shoplayoutElements[]>(Array(30).fill(null).map((_,index)=>({
@@ -96,7 +97,26 @@ const ShopLayout:React.FC =() =>{
 
     return(
     <>
-        <h3>Shop layout</h3>
+    <header className="header">
+          <h1>Register a new location</h1>
+          <div className="steps">
+          <button className="step done">
+            1
+          </button>
+          <div className="step-divider"></div>
+          <button className="step current">2</button>
+          <div className="step-divider dashed"></div>
+          <button className="step">3</button>
+          <div className="step-divider dashed"></div>
+          <button className="step" disabled>4</button>
+          </div>
+          
+        <button className="fullscreen-btn">
+          <img src={maximize} alt="Maximize" />
+        </button>
+        </header>
+        <main className='main'>
+        <h2>Shop layout</h2>
 
         <div className="dnd-row">
         
@@ -127,6 +147,11 @@ const ShopLayout:React.FC =() =>{
 
 
         </div>
+        </main>
+        <footer className="footer">
+          <button className="btn" onClick={()=>{props.onChange(1)}}>Back</button>
+          <button className="btn" onClick={()=>{props.onChange(3)}}>Next</button>
+        </footer>
     </>
     )
 }
