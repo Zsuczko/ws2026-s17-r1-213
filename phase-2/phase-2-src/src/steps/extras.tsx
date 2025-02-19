@@ -1,7 +1,18 @@
+import { useEffect, useState } from 'react'
 import maximize from '../assets/maximize.svg'
 
 const Extras:React.FC<{onChange:(page:number)=> void}> = (props) => {
     
+    const [parkingRadio, setParkingRadio] = useState("Easy")
+    const [freeWiFi, setFreeWifi] = useState(false)
+    const [accesible, setAccesible] = useState(false)
+    const [loungeArea, setLoungeArea] = useState(false)
+    const [bgMusic, setBgMusic] = useState(false)
+    const [personalCS, setPersonalCS] = useState(false)
+
+    useEffect(()=>{
+        console.log(parkingRadio)
+    })
     
     return(<>
          <header className="header">
@@ -25,23 +36,23 @@ const Extras:React.FC<{onChange:(page:number)=> void}> = (props) => {
         <main className='main'>
             <h2>Amenities and Services</h2>
             <label className="cnr-label">
-                <input type="checkbox" />
+                <input type="checkbox" checked={freeWiFi} onChange={(e)=>{setFreeWifi(e.target.checked)}}/>
                 <span>Free Wi-Fi</span>
             </label>
             <label className="cnr-label">
-                <input type="checkbox" />
+                <input type="checkbox" checked={accesible} onChange={(e)=>{setAccesible(e.target.checked)}} />
                 <span>Accesible entry</span>
             </label>
             <label className="cnr-label">
-                <input type="checkbox" />
+                <input type="checkbox" checked={loungeArea} onChange={(e)=>{setLoungeArea(e.target.checked)}} />
                 <span>Lounge Area</span>
             </label>
             <label className="cnr-label">
-                <input type="checkbox" />
+                <input type="checkbox" checked={bgMusic} onChange={(e)=>{setBgMusic(e.target.checked)}}/>
                 <span>Background music</span>
             </label>
             <label className="cnr-label">
-                <input type="checkbox" />
+                <input type="checkbox" checked={personalCS} onChange={(e)=>{setPersonalCS(e.target.checked)}} />
                 <span>Personal customor service</span>
             </label>
 
@@ -51,15 +62,15 @@ const Extras:React.FC<{onChange:(page:number)=> void}> = (props) => {
 
             <div className="input-row">
             <label className="cnr-label">
-                <input type="radio" name="parking-radio" defaultChecked />
+                <input type="radio" name="parking-radio" defaultChecked value="Easy" onChange={(e)=>{setParkingRadio(e.target.value)}} />
                 <span>Easy</span>
             </label>
             <label className="cnr-label">
-                <input type="radio" name="parking-radio" />
+                <input type="radio" name="parking-radio" value="Medium" onChange={(e)=>{setParkingRadio(e.target.value)}} />
                 <span>Medium</span>
             </label>
             <label className="cnr-label">
-            <input type="radio" name="parking-radio" />
+            <input type="radio" name="parking-radio" value="Hard" onChange={(e)=>{setParkingRadio(e.target.value)}} />
             <span>Hard</span>
           </label>
             </div>
