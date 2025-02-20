@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react"
-import PostalInput from "../components/postal_input";
 import maximize from '../assets/maximize.svg';
 import { GenrelaInformations } from "../lib/models";
 
 
 const GeneralInformation:React.FC<{
   data:GenrelaInformations;
+  loadedPages:number[];
   onChange:(page:number, data:GenrelaInformations)=>void}> = (props)=> {
 
 
@@ -26,7 +26,7 @@ const GeneralInformation:React.FC<{
     setPostalCode(postal)
   }
   
-  function nextPage(){
+  function nextPage(index:number){
     if(name.length<3 || description.length<10 || postalCode.length<4 || city.length<3 || address.length<5 || openFrom.length<5 || openTo.length<5){
       setIsChecking(true)
     }
@@ -48,7 +48,7 @@ const GeneralInformation:React.FC<{
         customerService:props.data.customerService,
         parking:props.data.parking
       }
-      props.onChange(2, newGeneral);
+      props.onChange(index, newGeneral);
     }
   }
 
@@ -73,9 +73,9 @@ const GeneralInformation:React.FC<{
             1
           </button>
           <div className="step-divider dashed"></div>
-          <button className="step">2</button>
+          <button className="step" onClick={()=>{nextPage(2)}} disabled={props.loadedPages.includes(2)}>2</button>
           <div className="step-divider dashed"></div>
-          <button className="step">3</button>
+          <button className="step" onClick={()=>{nextPage(3)}} disabled={props.loadedPages.includes(3)}>3</button>
           <div className="step-divider dashed"></div>
           <button className="step" disabled>4</button>
           </div>
@@ -160,7 +160,7 @@ const GeneralInformation:React.FC<{
       </main>
       <footer className="footer">
         <button className="btn" disabled>Back</button>
-        <button className="btn" onClick={nextPage}>Next</button>
+        <button className="btn" onClick={()=>{nextPage(2)}}>Next</button>
       </footer>
       </>
   );

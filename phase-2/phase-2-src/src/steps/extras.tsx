@@ -91,15 +91,15 @@ const Extras:React.FC<{data:GenrelaInformations, onChange:(page:number, data:Gen
 
             <div className="input-row">
             <label className="cnr-label">
-                <input type="radio" name="parking-radio" defaultChecked value="Easy" onChange={(e)=>{setParkingRadio(e.target.value)}} />
+                <input type="radio" name="parking-radio" defaultChecked value="Easy" onChange={(e)=>{setParkingRadio(e.target.value)}} checked={parkingRadio === "Easy"} />
                 <span>Easy</span>
             </label>
             <label className="cnr-label">
-                <input type="radio" name="parking-radio" value="Medium" onChange={(e)=>{setParkingRadio(e.target.value)}} />
+                <input type="radio" name="parking-radio" value="Medium" onChange={(e)=>{setParkingRadio(e.target.value)}} checked={parkingRadio === "Medium"} />
                 <span>Medium</span>
             </label>
             <label className="cnr-label">
-            <input type="radio" name="parking-radio" value="Hard" onChange={(e)=>{setParkingRadio(e.target.value)}} />
+            <input type="radio" name="parking-radio" value="Hard" onChange={(e)=>{setParkingRadio(e.target.value)}} checked={parkingRadio === "Hard"} />
             <span>Hard</span>
           </label>
             </div>

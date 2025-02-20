@@ -400,3 +400,18 @@ input, textarea, select{
 .grid-item.wall{
   background-color: darkgrey;
 } */
+
+
+.success-div{
+  margin: auto;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.success-div button{
+  width: fit-content;
+}

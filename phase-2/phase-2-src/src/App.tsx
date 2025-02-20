@@ -12,6 +12,7 @@ import { GenrelaInformations, shoplayoutElements } from './lib/models'
 function App() {
 
   const [page, setPage] = useState<number>(1)
+  const [loadedPages, setLoadedPages] = useState<number[]>([])
 
   const [generalInformation, setGeneralInformation] = useState<GenrelaInformations>({
     name:"",
@@ -51,12 +52,12 @@ function App() {
       <article className="container">
         {/* <ShopLayout></ShopLayout>         */}
         {page === 1?
-        <GeneralInformation data={generalInformation} onChange={handleGeneralInformationChange}></GeneralInformation>:
+        <GeneralInformation loadedPages={loadedPages} data={generalInformation} onChange={handleGeneralInformationChange}></GeneralInformation>:
         page ===2?
-        <ShopLayout layout={layout} onChange={handleShopLayoutChange}></ShopLayout>:
+        <ShopLayout layout={layout} onChange={handleShopLayoutChange} loadedPages={loadedPages}></ShopLayout>:
         page===3?
         <Extras data={generalInformation} onChange={handleGeneralInformationChange}></Extras>:
-        <Success></Success>}
+        <Success data={generalInformation} layout={layout}></Success>}
       </article>
     </>
   )

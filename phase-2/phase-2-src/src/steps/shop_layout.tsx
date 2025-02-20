@@ -6,7 +6,7 @@ import { shoplayoutElements } from '../lib/models'
 import maximize from '../assets/maximize.svg'
 import alert from '../assets/alert.svg'
 
-const ShopLayout:React.FC<{layout:shoplayoutElements[] ,onChange:(page:number, layout:shoplayoutElements[])=>void}> =(props) =>{
+const ShopLayout:React.FC<{layout:shoplayoutElements[] , loadedPages:number[], onChange:(page:number, layout:shoplayoutElements[], loadedPages:number[])=>void}> =(props) =>{
 
 
     const [layout, setLayout] = useState<shoplayoutElements[]>([])
@@ -131,7 +131,11 @@ const ShopLayout:React.FC<{layout:shoplayoutElements[] ,onChange:(page:number, l
     function setPage(index:number){
         
         if(checkLayout()){
-            props.onChange(index, layout)
+            if (!props.loadedPages.includes(2)){
+                props.loadedPages.push(2)
+            }
+
+            props.onChange(index, layout, props.loadedPages)
         }
         else{
             setIsChecking(true)
@@ -151,13 +155,13 @@ const ShopLayout:React.FC<{layout:shoplayoutElements[] ,onChange:(page:number, l
     <header className="header">
           <h1>Register a new location</h1>
           <div className="steps">
-          <button className="step done">
+          <button className="step done" onClick={()=>{setPage(1)}}>
             1
           </button>
           <div className="step-divider"></div>
           <button className="step current">2</button>
           <div className="step-divider dashed"></div>
-          <button className="step">3</button>
+          <button className="step" onClick={()=>{setPage(2)}} disabled={props.loadedPages.includes(3)}>3</button>
           <div className="step-divider dashed"></div>
           <button className="step" disabled>4</button>
           </div>
@@ -209,7 +213,7 @@ const ShopLayout:React.FC<{layout:shoplayoutElements[] ,onChange:(page:number, l
         </div>
         </main>
         <footer className="footer">
-          <button className="btn" onClick={()=>{props.onChange(1, layout)}}>Back</button>
+          <button className="btn" onClick={()=>{setPage(1)}}>Back</button>
           <button className="btn" onClick={()=>{setPage(3)}}>Next</button>
         </footer>
     </>
