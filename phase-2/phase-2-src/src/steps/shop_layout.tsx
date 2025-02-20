@@ -1,19 +1,15 @@
 import washingMachine from '../assets/washing-machine.svg'
 import space from '../assets/space.svg'
 import armchair from '../assets/armchair.svg'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { shoplayoutElements } from '../lib/models'
 import maximize from '../assets/maximize.svg'
 import alert from '../assets/alert.svg'
 
-const ShopLayout:React.FC<{onChange:(page:number)=>void}> =(props) =>{
+const ShopLayout:React.FC<{layout:shoplayoutElements[] ,onChange:(page:number, layout:shoplayoutElements[])=>void}> =(props) =>{
 
 
-    const [layout, setLayout] = useState<shoplayoutElements[]>(Array(30).fill(null).map((_,index)=>({
-        index:index,
-        class:"empty",
-        role:"empty"
-    })))
+    const [layout, setLayout] = useState<shoplayoutElements[]>([])
 
     const [dragOverIndex, setDragOverIndex] = useState<number | null>(null)
 
@@ -135,13 +131,18 @@ const ShopLayout:React.FC<{onChange:(page:number)=>void}> =(props) =>{
     function setPage(index:number){
         
         if(checkLayout()){
-            props.onChange(index)
+            props.onChange(index, layout)
         }
         else{
             setIsChecking(true)
         }
        
     }
+
+
+    useEffect(()=>{
+        setLayout(props.layout)
+    }, [])
 
 
 
@@ -208,7 +209,7 @@ const ShopLayout:React.FC<{onChange:(page:number)=>void}> =(props) =>{
         </div>
         </main>
         <footer className="footer">
-          <button className="btn" onClick={()=>{props.onChange(1)}}>Back</button>
+          <button className="btn" onClick={()=>{props.onChange(1, layout)}}>Back</button>
           <button className="btn" onClick={()=>{setPage(3)}}>Next</button>
         </footer>
     </>

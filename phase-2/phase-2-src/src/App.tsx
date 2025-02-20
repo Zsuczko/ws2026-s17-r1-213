@@ -7,7 +7,7 @@ import GeneralInformation from './steps/general_information'
 import ShopLayout from './steps/shop_layout'
 import Extras from './steps/extras'
 import Success from './steps/success'
-import { GenrelaInformations } from './lib/models'
+import { GenrelaInformations, shoplayoutElements } from './lib/models'
 
 function App() {
 
@@ -30,9 +30,20 @@ function App() {
     parking:"Easy"
   })
 
+  const [layout, setLayout] = useState<shoplayoutElements[]>(Array(30).fill(null).map((_,index)=>({
+          index:index,
+          class:"empty",
+          role:"empty"
+  })))
+
   const handleGeneralInformationChange = (page:number, data:GenrelaInformations)=>{
     setPage(page);
     setGeneralInformation(data)
+  }
+
+  const handleShopLayoutChange = (page:number, layout:shoplayoutElements[])=>{
+    setPage(page);
+    setLayout(layout)
   }
 
   return (
@@ -42,7 +53,7 @@ function App() {
         {page === 1?
         <GeneralInformation data={generalInformation} onChange={handleGeneralInformationChange}></GeneralInformation>:
         page ===2?
-        <ShopLayout onChange={setPage}></ShopLayout>:
+        <ShopLayout layout={layout} onChange={handleShopLayoutChange}></ShopLayout>:
         page===3?
         <Extras data={generalInformation} onChange={handleGeneralInformationChange}></Extras>:
         <Success></Success>}
