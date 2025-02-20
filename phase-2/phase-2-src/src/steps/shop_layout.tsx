@@ -4,32 +4,39 @@ import armchair from '../assets/armchair.svg'
 import { useState } from 'react'
 import { shoplayoutElements } from '../lib/models'
 import maximize from '../assets/maximize.svg'
+import alert from '../assets/alert.svg'
 
 const ShopLayout:React.FC<{onChange:(page:number)=>void}> =(props) =>{
 
 
     const [layout, setLayout] = useState<shoplayoutElements[]>(Array(30).fill(null).map((_,index)=>({
         index:index,
-        class:"empty"
+        class:"empty",
+        role:"empty"
     })))
 
     const [dragOverIndex, setDragOverIndex] = useState<number | null>(null)
 
     const [elements, setElements] = useState<shoplayoutElements[]>([
-        {name:"Washer (8kg)", class:"washer", src:washingMachine},
-        {name:"Washer (11kg)", class:"washer", src:washingMachine},
-        {name:"Dryer (18kg)", class:"dryer", src:washingMachine},
-        {name:"Dryer (25kg)", class:"dryer", src:washingMachine},
-        {name:"Waiting area", class:"", src:armchair},
-        {name:"Folding table", class:"", src:space},
+        {name:"Washer (8kg)", class:"washer", src:washingMachine, role:"machine"},
+        {name:"Washer (11kg)", class:"washer", src:washingMachine,role:"machine"},
+        {name:"Dryer (18kg)", class:"dryer", src:washingMachine, role:"machine"},
+        {name:"Dryer (25kg)", class:"dryer", src:washingMachine, role:"machine"},
+        {name:"Waiting area", class:"", src:armchair, role:"area"},
+        {name:"Folding table", class:"", src:space, role:"area"},
     ])
+
+    const [isChecking, setIsChecking] = useState<boolean>(false)
 
 
     const handleClick = (e:React.MouseEvent, index:number)=>{
-        console.log("single click")
+
         if(layout[index].class !== "empty" ){
-            const emptyItem = {index:index,
-                class:"empty"}
+            const emptyItem = {
+                index:index,
+                class:"empty",
+                role:"empty"
+            }
             const newLayoutItem  = [...layout]
             newLayoutItem[index] = emptyItem
             
@@ -39,12 +46,13 @@ const ShopLayout:React.FC<{onChange:(page:number)=>void}> =(props) =>{
 
     
     const handleDoubleClick = (e:React.MouseEvent, index:number)=>{
-        console.log("double click")
+
         const wallItem = {
             index:index,
             name:"Wall",
             class:"wall",
-            src:undefined
+            src:undefined,
+            role:"wall"
         }
         const newLayoutItem  = [...layout]
         newLayoutItem[index] = wallItem
@@ -56,7 +64,8 @@ const ShopLayout:React.FC<{onChange:(page:number)=>void}> =(props) =>{
         e.preventDefault()
         const entranceItem = {
             index:index,
-            class:"entrance"
+            class:"entrance",
+            role:"entrance"
         }
 
         const newLayoutItem = [...layout]
@@ -74,7 +83,6 @@ const ShopLayout:React.FC<{onChange:(page:number)=>void}> =(props) =>{
     const handleDragOver = (e: React.DragEvent, index:number) => {
         e.preventDefault();
         setDragOverIndex(index);
-        console.log(dragOverIndex)
     }
 
     const handleDragLeave = () => {
@@ -95,6 +103,45 @@ const ShopLayout:React.FC<{onChange:(page:number)=>void}> =(props) =>{
         setLayout(newLayoutItem);
     }
 
+
+
+    function checkLayout(){
+
+
+        for (let row = 0; row < 6; row++) {
+            for (let col = 0; col < 5; col++) {
+                
+                if(layout[row*5+col].role === "machine"){
+                    if(row-1 >= 0 && row+1<6 && col-1>=0 && col+1<5){
+                        if(layout[(row-1)*5+(col)].role!=="wall" && layout[(row+1)*5+(col)].role!=="wall" && layout[(row)*5+(col-1)].role!=="wall" && layout[(row)*5+(col+1)].role!=="wall"){
+                           
+                            return false
+
+                        }
+                    }
+                }
+
+                // console.log(layout[row*5+col].role,row, col)
+
+
+                
+            }
+            
+        }
+
+        return true
+    }
+
+    function setPage(index:number){
+        
+        if(checkLayout()){
+            props.onChange(index)
+        }
+        else{
+            setIsChecking(true)
+        }
+       
+    }
 
 
 
@@ -131,6 +178,15 @@ const ShopLayout:React.FC<{onChange:(page:number)=>void}> =(props) =>{
         ))}
         </div>
 
+
+
+        {isChecking&&!checkLayout()?
+        <div className="alert">
+            <img src={alert} alt="Alert" />
+            <span>Washers or Dryers can only be next to a wall</span>
+        </div>:
+        <></>}
+
         <div className="grid">
 
         {layout.map((item) =>(
@@ -153,7 +209,7 @@ const ShopLayout:React.FC<{onChange:(page:number)=>void}> =(props) =>{
         </main>
         <footer className="footer">
           <button className="btn" onClick={()=>{props.onChange(1)}}>Back</button>
-          <button className="btn" onClick={()=>{props.onChange(3)}}>Next</button>
+          <button className="btn" onClick={()=>{setPage(3)}}>Next</button>
         </footer>
     </>
     )

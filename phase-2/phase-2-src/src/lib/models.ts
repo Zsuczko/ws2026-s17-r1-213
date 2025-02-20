@@ -2,7 +2,8 @@ export interface shoplayoutElements{
     index?:number
     name?: string,
     class?: string,
-    src?:string
+    src?:string,
+    role?:string
 }
 
 export interface GenrelaInformations{
