@@ -21,7 +21,13 @@ function App() {
     address:"",
     from:"",
     to:"",
-    openAt:"Every Day"
+    openAt:"Every Day",
+    freeWiFi:false,
+    acessibleEntry:false,
+    loungeArea:false,
+    backgroundMusic:false,
+    customerService:false,
+    parking:"Easy"
   })
 
   const handleGeneralInformationChange = (page:number, data:GenrelaInformations)=>{
@@ -38,7 +44,7 @@ function App() {
         page ===2?
         <ShopLayout onChange={setPage}></ShopLayout>:
         page===3?
-        <Extras onChange={setPage}></Extras>:
+        <Extras data={generalInformation} onChange={handleGeneralInformationChange}></Extras>:
         <Success></Success>}
       </article>
     </>

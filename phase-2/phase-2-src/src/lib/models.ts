@@ -14,10 +14,10 @@ export interface GenrelaInformations{
     from:string;
     to:string;
     openAt:string;
-    freeWiFi?:boolean;
-    acessibleEntry?:boolean;
-    loungeArea?:boolean;
-    backgroundMusic?:boolean;
-    customerService?:boolean;
-    parking?:string;
+    freeWiFi:boolean;
+    acessibleEntry:boolean;
+    loungeArea:boolean;
+    backgroundMusic:boolean;
+    customerService:boolean;
+    parking:string;
 }

@@ -1,7 +1,8 @@
 import { useEffect, useState } from 'react'
 import maximize from '../assets/maximize.svg'
+import { GenrelaInformations } from '../lib/models'
 
-const Extras:React.FC<{onChange:(page:number)=> void}> = (props) => {
+const Extras:React.FC<{data:GenrelaInformations, onChange:(page:number, data:GenrelaInformations)=> void}> = (props) => {
     
     const [parkingRadio, setParkingRadio] = useState<string>("Easy")
     const [freeWiFi, setFreeWifi] = useState<boolean>(false)
@@ -10,9 +11,37 @@ const Extras:React.FC<{onChange:(page:number)=> void}> = (props) => {
     const [bgMusic, setBgMusic] = useState<boolean>(false)
     const [personalCS, setPersonalCS] = useState<boolean>(false)
 
+
+    function setPage(index:number){
+        
+        const newGeneral:GenrelaInformations = {
+            name:props.data.name,
+            description:props.data.description,
+            postalCode:props.data.postalCode,
+            city:props.data.city,
+            address:props.data.address,
+            from:props.data.from,
+            to:props.data.to,
+            openAt:props.data.openAt,
+            freeWiFi:freeWiFi,
+            acessibleEntry:accesible,
+            loungeArea:loungeArea,
+            backgroundMusic:bgMusic,
+            customerService:personalCS,
+            parking:parkingRadio
+          }
+        
+        props.onChange(index, newGeneral);
+    }
+
     useEffect(()=>{
-        console.log(parkingRadio)
-    })
+        setFreeWifi(props.data.freeWiFi)
+        setAccesible(props.data.acessibleEntry)
+        setLoungeArea(props.data.loungeArea)
+        setBgMusic(props.data.backgroundMusic)
+        setPersonalCS(props.data.customerService)
+        setParkingRadio(props.data.parking)
+    },[])
     
     return(<>
          <header className="header">
@@ -76,8 +105,8 @@ const Extras:React.FC<{onChange:(page:number)=> void}> = (props) => {
             </div>
         </main>
         <footer className="footer">
-          <button className="btn" onClick={()=>{props.onChange(2)}}>Back</button>
-          <button className="btn" onClick={()=>{props.onChange(4)}}>Next</button>
+          <button className="btn" onClick={()=>{setPage(2)}}>Back</button>
+          <button className="btn" onClick={()=>{setPage(4)}}>Next</button>
         </footer>
     </>)
 }
