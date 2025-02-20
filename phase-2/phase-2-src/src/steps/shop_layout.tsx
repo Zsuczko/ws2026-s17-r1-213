@@ -160,8 +160,8 @@ const ShopLayout:React.FC<{layout:shoplayoutElements[] , loadedPages:number[], o
           </button>
           <div className="step-divider"></div>
           <button className="step current">2</button>
-          <div className="step-divider dashed"></div>
-          <button className="step" onClick={()=>{setPage(2)}} disabled={props.loadedPages.includes(3)}>3</button>
+          <div className={`step-divider ${props.loadedPages.includes(3)?"":"dashed"}`}></div>
+          <button  className={`step ${props.loadedPages.includes(3)?"done":""}`} onClick={()=>{setPage(3)}} disabled={!props.loadedPages.includes(3)}>3</button>
           <div className="step-divider dashed"></div>
           <button className="step" disabled>4</button>
           </div>

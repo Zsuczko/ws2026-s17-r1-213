@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import maximize from '../assets/maximize.svg'
 import { GenrelaInformations } from '../lib/models'
 
-const Extras:React.FC<{data:GenrelaInformations, onChange:(page:number, data:GenrelaInformations)=> void}> = (props) => {
+const Extras:React.FC<{data:GenrelaInformations,loadedPages:number[], onChange:(page:number, data:GenrelaInformations, loadedPages:number[])=> void}> = (props) => {
     
     const [parkingRadio, setParkingRadio] = useState<string>("Easy")
     const [freeWiFi, setFreeWifi] = useState<boolean>(false)
@@ -31,7 +31,11 @@ const Extras:React.FC<{data:GenrelaInformations, onChange:(page:number, data:Gen
             parking:parkingRadio
           }
         
-        props.onChange(index, newGeneral);
+        if(!props.loadedPages.includes(3)){
+            props.loadedPages.push(3)
+        }
+
+        props.onChange(index, newGeneral, props.loadedPages);
     }
 
     useEffect(()=>{
@@ -47,11 +51,11 @@ const Extras:React.FC<{data:GenrelaInformations, onChange:(page:number, data:Gen
          <header className="header">
           <h1>Register a new location</h1>
           <div className="steps">
-          <button className="step done">
+          <button className="step done" onClick={()=>{setPage(1)}}>
             1
           </button>
           <div className="step-divider"></div>
-          <button className="step done">2</button>
+          <button className="step done" onClick={()=>{setPage(2)}}>2</button>
           <div className="step-divider"></div>
           <button className="step current">3</button>
           <div className="step-divider dashed"></div>

@@ -6,7 +6,7 @@ import { GenrelaInformations } from "../lib/models";
 const GeneralInformation:React.FC<{
   data:GenrelaInformations;
   loadedPages:number[];
-  onChange:(page:number, data:GenrelaInformations)=>void}> = (props)=> {
+  onChange:(page:number, data:GenrelaInformations, loadedPages:number[])=>void}> = (props)=> {
 
 
   const [isChecking, setIsChecking] = useState<boolean>(false)
@@ -48,7 +48,7 @@ const GeneralInformation:React.FC<{
         customerService:props.data.customerService,
         parking:props.data.parking
       }
-      props.onChange(index, newGeneral);
+      props.onChange(index, newGeneral, props.loadedPages);
     }
   }
 
@@ -72,10 +72,10 @@ const GeneralInformation:React.FC<{
           <button className="step current">
             1
           </button>
-          <div className="step-divider dashed"></div>
-          <button className="step" onClick={()=>{nextPage(2)}} disabled={props.loadedPages.includes(2)}>2</button>
-          <div className="step-divider dashed"></div>
-          <button className="step" onClick={()=>{nextPage(3)}} disabled={props.loadedPages.includes(3)}>3</button>
+          <div className={`step-divider ${props.loadedPages.includes(2)?"":"dashed"}`}></div>
+          <button className={`step ${props.loadedPages.includes(2)?"done":""}`} onClick={()=>{nextPage(2)}} disabled={!props.loadedPages.includes(2)}>2</button>
+          <div className={`step-divider ${props.loadedPages.includes(3)?"":"dashed"}`}></div>
+          <button className={`step ${props.loadedPages.includes(3)?"done":""}`} onClick={()=>{nextPage(3)}} disabled={!props.loadedPages.includes(3)}>3</button>
           <div className="step-divider dashed"></div>
           <button className="step" disabled>4</button>
           </div>

@@ -37,14 +37,16 @@ function App() {
           role:"empty"
   })))
 
-  const handleGeneralInformationChange = (page:number, data:GenrelaInformations)=>{
+  const handleGeneralInformationChange = (page:number, data:GenrelaInformations, loadedPages:number[])=>{
     setPage(page);
     setGeneralInformation(data)
+    setLoadedPages(loadedPages)
   }
 
-  const handleShopLayoutChange = (page:number, layout:shoplayoutElements[])=>{
+  const handleShopLayoutChange = (page:number, layout:shoplayoutElements[], loadedPages:number[])=>{
     setPage(page);
-    setLayout(layout)
+    setLayout(layout),
+    setLoadedPages(loadedPages)
   }
 
   return (
@@ -56,7 +58,7 @@ function App() {
         page ===2?
         <ShopLayout layout={layout} onChange={handleShopLayoutChange} loadedPages={loadedPages}></ShopLayout>:
         page===3?
-        <Extras data={generalInformation} onChange={handleGeneralInformationChange}></Extras>:
+        <Extras data={generalInformation} onChange={handleGeneralInformationChange} loadedPages={loadedPages}></Extras>:
         <Success data={generalInformation} layout={layout}></Success>}
       </article>
     </>
