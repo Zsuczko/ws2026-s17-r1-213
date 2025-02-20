@@ -1,9 +1,12 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import PostalInput from "../components/postal_input";
 import maximize from '../assets/maximize.svg';
+import { GenrelaInformations } from "../lib/models";
 
 
-const GeneralInformation:React.FC<{onChange:(page:number)=>void}> = (props)=> {
+const GeneralInformation:React.FC<{
+  data:GenrelaInformations;
+  onChange:(page:number, data:GenrelaInformations)=>void}> = (props)=> {
 
 
   const [isChecking, setIsChecking] = useState<boolean>(false)
@@ -29,9 +32,37 @@ const GeneralInformation:React.FC<{onChange:(page:number)=>void}> = (props)=> {
     }
 
     else{
-      props.onChange(2);
+      const newGeneral:GenrelaInformations = {
+        name:name,
+        description:description,
+        postalCode:parseInt(postalCode),
+        city:city,
+        address:address,
+        from:openFrom,
+        to:openTo,
+        openAt:openAt,
+        freeWiFi:props.data.freeWiFi,
+        acessibleEntry:props.data.acessibleEntry,
+        loungeArea:props.data.loungeArea,
+        backgroundMusic:props.data.backgroundMusic,
+        customerService:props.data.customerService,
+        parking:props.data.parking
+      }
+      props.onChange(2, newGeneral);
     }
   }
+
+
+  useEffect(()=>{
+    setName(props.data.name)
+    setDescription(props.data.description)
+    setPostalCode(props.data.postalCode===0?"":props.data.postalCode.toString())
+    setCity(props.data.city)
+    setAddress(props.data.address)
+    setOpenAt(props.data.openAt)
+    setOpenFrom(props.data.from)
+    setOpenTo(props.data.to)
+  },[])
 
   return(
       <>
@@ -105,7 +136,7 @@ const GeneralInformation:React.FC<{onChange:(page:number)=>void}> = (props)=> {
 
       <div className="input-group">
         <label htmlFor="select">Open at</label>
-        <select id="select" onChange={(e)=>{setOpenAt(e.target.value)}}>
+        <select id="select" onChange={(e)=>{setOpenAt(e.target.value)}} value={openAt}>
           <option value="Every Day" >Every Day</option>
           <option value="Weekdays" >Weekdays</option>
           <option value="Weekends" >Weekends</option>
@@ -115,13 +146,13 @@ const GeneralInformation:React.FC<{onChange:(page:number)=>void}> = (props)=> {
       <div className="input-row">
         <div className="input-group input-time">
           <label htmlFor="from">From</label>
-          <input type="time" id="from"  className={isChecking && openFrom.length<5?"error":""} autoComplete="new-password" onChange={(e)=>{setOpenFrom(e.target.value)}}/>
+          <input type="time" id="from" value={openFrom}  className={isChecking && openFrom.length<5?"error":""} autoComplete="new-password" onChange={(e)=>{setOpenFrom(e.target.value)}}/>
           {isChecking && openFrom.length<5?
         <span className="input-error">This field is required</span>:<></>}
         </div>
         <div className="input-group input-time">
           <label htmlFor="to">To</label>
-          <input type="time" id="to"  className={isChecking && openTo.length<5?"error":""} autoComplete="new-password" onChange={(e)=>{setOpenTo(e.target.value)}}/>
+          <input type="time" id="to" value={openTo} className={isChecking && openTo.length<5?"error":""} autoComplete="new-password" onChange={(e)=>{setOpenTo(e.target.value)}}/>
           {isChecking && openTo.length<5?
         <span className="input-error">This field is required</span>:<></>}
         </div>
