@@ -43,7 +43,8 @@ h1{
     /* font-size: 4em; */
 }
 main h1{
-    font-size: 2.4em;
+    /* font-size: 2.4em; */
+    font-size: 1.7em;
     margin: 0.3em;
 }
 
@@ -64,7 +65,8 @@ section{
 
 small{
     color: #71819a;
-    font-size: 1em;
+    /* font-size: 1em; */
+    font-size: 0.9em;
 }
 
 p{
@@ -92,6 +94,15 @@ button:hover{
 a{
     color: unset;
     text-decoration: unset;
+}
+
+@media (min-width:1000px) {
+    main h1{
+        font-size: 2.4em;
+    }
+    small{
+        font-size: 1em;
+    }
 }
 
 /* general classes */
@@ -277,6 +288,8 @@ header h1:hover::after{
 .how-card{
     color: white;
     font-size: 0.8em;
+    width: fit-content;
+    margin: auto;
 
 }
 .how-card figure{
@@ -332,6 +345,18 @@ header h1:hover::after{
     margin: auto;
     text-align: center;
     justify-content: center;
+    flex-direction: column;
+    text-align: center;
+}
+
+@media (min-width:1000px) {
+    #how-card-section{
+        flex-direction: row;
+    }
+    .how-card{
+        width: auto;
+        margin: 0;
+    }
 }
 
 
@@ -356,9 +381,9 @@ header h1:hover::after{
 
 .why-card-section{
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    /* grid-template-columns: repeat(2, 1fr); */
     gap: 2rem 0;
-    margin: auto;
+    /* margin: auto; */
     width: fit-content;
 }
 
@@ -375,12 +400,15 @@ header h1:hover::after{
 }
 
 .why-card p{
-    max-width: 22rem;
+    /* max-width: 22rem; */
+    max-width: 15rem;
     text-align: left;
     color: #69758c;
+    font-size: 0.8em;
 }
 .why-card h3{
-    font-size: 1.5em;
+    /* font-size: 1.5em; */
+    font-size: 1em;
     margin: 0;
 }
 
@@ -389,10 +417,13 @@ header h1:hover::after{
     justify-content: center;
     align-items: center;
     background-color: var(--button-color);
-    height: 3em;
-    width: 3em;
+    /* height: 3em;
+    width: 3em; */
+    height: 2.5em;
+    width: 2.5em;
     border-radius: 20%;
     transition: 0.5s ease;
+    margin: 1em;
 }
 
 .why-card figure img{
@@ -406,6 +437,25 @@ header h1:hover::after{
 
 .why-card:hover img{
     transform: scale(1.4);
+}
+
+@media (min-width:1000px) {
+    .why-card-section{
+        grid-template-columns: repeat(2, 1fr);
+        margin: auto;
+    }
+    .why-card p{
+        max-width: 22rem;
+        font-size: 1em;
+    }
+    .why-card h3{
+        font-size: 1.5em;
+    }
+    .why-card figure{
+        height: 3em;
+        width: 3em;
+        margin: 2em;
+    }
 }
 
 
