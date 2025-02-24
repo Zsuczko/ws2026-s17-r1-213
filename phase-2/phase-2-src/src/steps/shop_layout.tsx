@@ -4,9 +4,10 @@ import armchair from '../assets/armchair.svg'
 import { useEffect, useState } from 'react'
 import { shoplayoutElements } from '../lib/models'
 import maximize from '../assets/maximize.svg'
+import minimize from "../assets/minimize.svg";
 import alert from '../assets/alert.svg'
 
-const ShopLayout:React.FC<{layout:shoplayoutElements[] , loadedPages:number[], onChange:(page:number, layout:shoplayoutElements[], loadedPages:number[])=>void}> =(props) =>{
+const ShopLayout:React.FC<{layout:shoplayoutElements[] , loadedPages:number[], onChange:(page:number, layout:shoplayoutElements[], loadedPages:number[])=>void,  onMaximize:(maximize:boolean)=>void}> =(props) =>{
 
 
     const [layout, setLayout] = useState<shoplayoutElements[]>([])
@@ -148,7 +149,7 @@ const ShopLayout:React.FC<{layout:shoplayoutElements[] , loadedPages:number[], o
         setLayout(props.layout)
     }, [])
 
-
+    const [isMaximized, setIsMaximized] = useState(false)
 
     return(
     <>
@@ -166,9 +167,9 @@ const ShopLayout:React.FC<{layout:shoplayoutElements[] , loadedPages:number[], o
           <button className="step" disabled>4</button>
           </div>
           
-        <button className="fullscreen-btn">
-          <img src={maximize} alt="Maximize" />
-        </button>
+          <button className="fullscreen-btn">
+            <img src={isMaximized?minimize:maximize} alt="Maximize" onClick={()=>{props.onMaximize(true);setIsMaximized(!isMaximized)}} />
+          </button>
         </header>
         <main className='main'>
         <h2>Shop layout</h2>

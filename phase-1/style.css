@@ -26,6 +26,7 @@
 }
 
 
+
 /* general */
 
 html{
@@ -40,6 +41,7 @@ body{
 
 h1{
     color: white;
+    font-weight: bold;
     /* font-size: 4em; */
 }
 main h1{
@@ -73,6 +75,7 @@ p{
     max-width: 42rem;
     text-align: center;
     margin: auto;
+    font-size: 0.8em;
 }
 
 button{
@@ -101,6 +104,9 @@ a{
         font-size: 2.4em;
     }
     small{
+        font-size: 1em;
+    }
+    p{
         font-size: 1em;
     }
 }
@@ -139,6 +145,7 @@ a{
 
 header{
     padding: 0.7rem 8%;
+    opacity: 0;
 }
 
 .main-navbar{
@@ -186,10 +193,17 @@ header h1:hover::after{
     position: relative;
 }
 
+.hero-section span{
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+}
+
 
 #main-title{
     text-align: center;
-    font-size: 4em;
+    /* font-size: 4em; */
+    font-size: 1.7em;
     z-index: 1;
     position: relative;
 }
@@ -217,6 +231,14 @@ header h1:hover::after{
     margin: 2em 0 0 0;
     z-index: 1;
     position: relative;
+    display: flex;
+    gap: 0.5em;
+    width: fit-content;
+    margin: auto;
+}
+
+.hero-button-group button{
+    padding: 0.8em;
 }
 
 .hero-circle-one{
@@ -231,6 +253,21 @@ header h1:hover::after{
     left: 70%;
     bottom: 10rem;
     z-index: 1;  
+}
+
+@media (min-width:1000px) {
+    #main-title{
+        font-size: 4em;
+    }
+
+    .hero-section span{
+        gap: 1.5em;
+    }
+
+
+    .hero-button-group button{
+        padding: 1em 1.5em;
+    }
 }
 
 
@@ -539,18 +576,34 @@ header h1:hover::after{
 
 .location-card-group{
     display: flex;    
-    justify-content: center;
-    gap: 3rem;
+    /* justify-content: center; */
+    scroll-behavior: smooth;
+    /* gap: 3rem; */
+    gap: 1rem;
     margin: auto;
-    margin: 3rem 0;
+    /* margin: 3rem 0; */
+    padding: 3rem;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+
+.location-card-group::-webkit-scrollbar{
+    display: none;
 }
 
 .location-card{
     display: flex;
     flex-direction: column;
     gap: 1.3rem;
-    width: 20rem;
+    /* width: 20rem; */
+    width: 15rem;
+    min-width: 12rem;
     padding: 2em;
+    scroll-snap-align: start;
+    scroll-snap-stop: always;
     border: #d4e1f0 solid 0.1em;
     border-radius: 1em;
     text-align: left;
@@ -576,6 +629,12 @@ header h1:hover::after{
     border: #3d81db solid 0.1em;
     transform: translateY(-0.4em);
   
+}
+
+@media (min-width:1200px) {
+    .location-card-group{
+        justify-content: center;
+    }
 }
 
 

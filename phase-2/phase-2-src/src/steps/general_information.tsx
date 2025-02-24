@@ -1,12 +1,13 @@
 import { useEffect, useState } from "react"
 import maximize from '../assets/maximize.svg';
+import minimize from "../assets/minimize.svg";
 import { GenrelaInformations } from "../lib/models";
 
 
 const GeneralInformation:React.FC<{
   data:GenrelaInformations;
   loadedPages:number[];
-  onChange:(page:number, data:GenrelaInformations, loadedPages:number[])=>void}> = (props)=> {
+  onChange:(page:number, data:GenrelaInformations, loadedPages:number[])=>void, onMaximize:(maximize:boolean)=>void}> = (props)=> {
 
 
   const [isChecking, setIsChecking] = useState<boolean>(false)
@@ -64,6 +65,8 @@ const GeneralInformation:React.FC<{
     setOpenTo(props.data.to)
   },[])
 
+  const [isMaximized, setIsMaximized] = useState(false)
+
   return(
       <>
         <header className="header">
@@ -81,7 +84,7 @@ const GeneralInformation:React.FC<{
           </div>
             
           <button className="fullscreen-btn">
-            <img src={maximize} alt="Maximize" />
+            <img src={isMaximized?minimize:maximize} alt="Maximize" onClick={()=>{props.onMaximize(true);setIsMaximized(!isMaximized)}} />
           </button>
         </header>
       <main className="main">

@@ -1,8 +1,9 @@
 import { useEffect, useState } from 'react'
 import maximize from '../assets/maximize.svg'
+import minimize from "../assets/minimize.svg";
 import { GenrelaInformations } from '../lib/models'
 
-const Extras:React.FC<{data:GenrelaInformations,loadedPages:number[], onChange:(page:number, data:GenrelaInformations, loadedPages:number[])=> void}> = (props) => {
+const Extras:React.FC<{data:GenrelaInformations,loadedPages:number[], onChange:(page:number, data:GenrelaInformations, loadedPages:number[])=> void,  onMaximize:(maximize:boolean)=>void}> = (props) => {
     
     const [parkingRadio, setParkingRadio] = useState<string>("Easy")
     const [freeWiFi, setFreeWifi] = useState<boolean>(false)
@@ -46,6 +47,8 @@ const Extras:React.FC<{data:GenrelaInformations,loadedPages:number[], onChange:(
         setPersonalCS(props.data.customerService)
         setParkingRadio(props.data.parking)
     },[])
+
+    const [isMaximized, setIsMaximized] = useState(false)
     
     return(<>
          <header className="header">
@@ -62,9 +65,10 @@ const Extras:React.FC<{data:GenrelaInformations,loadedPages:number[], onChange:(
           <button className="step" disabled>4</button>
           </div>
           
-        <button className="fullscreen-btn">
-          <img src={maximize} alt="Maximize" />
-        </button>
+             
+          <button className="fullscreen-btn">
+            <img src={isMaximized?minimize:maximize} alt="Maximize" onClick={()=>{props.onMaximize(true);setIsMaximized(!isMaximized)}} />
+          </button>
         </header>
         <main className='main'>
             <h2>Amenities and Services</h2>

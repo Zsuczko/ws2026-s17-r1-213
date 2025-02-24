@@ -1,9 +1,11 @@
 import maximize from '../assets/maximize.svg'
+import minimize from "../assets/minimize.svg";
 import check from '../assets/check.svg'
 import { GenrelaInformations, shoplayoutElements } from '../lib/models'
+import { useState } from 'react';
 
 
-const Success:React.FC<{data:GenrelaInformations, layout:shoplayoutElements[]}> = (props) => {
+const Success:React.FC<{data:GenrelaInformations, layout:shoplayoutElements[], onStartOver:(startOver:boolean)=>void, onMaximize:(maximize:boolean)=>void}> = (props) => {
 
 
   function copyToClipboard(){
@@ -47,6 +49,8 @@ const Success:React.FC<{data:GenrelaInformations, layout:shoplayoutElements[]}> 
     URL.revokeObjectURL(link.href)
   }
 
+    const [isMaximized, setIsMaximized] = useState(false)
+
   return(<>
      <header className="header">
           <h1>Register a new location</h1>
@@ -68,9 +72,10 @@ const Success:React.FC<{data:GenrelaInformations, layout:shoplayoutElements[]}> 
           </button>
           </div>
           
-        <button className="fullscreen-btn">
-          <img src={maximize} alt="Maximize" />
-        </button>
+                
+          <button className="fullscreen-btn">
+            <img src={isMaximized?minimize:maximize} alt="Maximize" onClick={()=>{props.onMaximize(true);setIsMaximized(!isMaximized)}} />
+          </button>
         </header>
         <main className='main'>
 
@@ -80,7 +85,7 @@ const Success:React.FC<{data:GenrelaInformations, layout:shoplayoutElements[]}> 
             <button className="btn" onClick={copyToClipboard}>Copy from values</button>
             <button className="btn" onClick={downloadCSV}>Export floorplan</button>
             <hr></hr>
-            <button className="btn">Start over</button>
+            <button className="btn" onClick={()=>{props.onStartOver(true)}}>Start over</button>
           </div>
         </main>
     
