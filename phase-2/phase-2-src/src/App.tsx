@@ -8,6 +8,7 @@ import Extras from './steps/extras'
 import Success from './steps/success'
 import { GenrelaInformations, shoplayoutElements } from './lib/models'
 
+// main
 function App() {
 
   const [page, setPage] = useState<number>(()=>{
