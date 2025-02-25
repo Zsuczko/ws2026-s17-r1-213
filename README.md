@@ -6,4 +6,4 @@ https://earnest-gumdrop-bbd44e.netlify.app/
 <br/>
 Buczkó Béla
 <br/>
-(Valamiért a phase-2-t nem deployolja a Netlify. Lokálisan futattni a React projectet a phase-2 mappában lefutatva az npm run dev paranccsal lehet: https://vite.dev/guide/)
+(A phase 2 másik url-en van, mivel csak így lehetett megoldani: https://illustrious-nougat-5c00d8.netlify.app/ (de a fő url átírányít))
