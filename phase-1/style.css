@@ -920,6 +920,7 @@ footer hr{
         left: 50%;
         transform: translate(-50%);
         bottom: -43rem;
+        display: block;
     }
     footer hr{
         display: none;
