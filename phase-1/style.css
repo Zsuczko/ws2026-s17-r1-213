@@ -64,7 +64,7 @@ nav{
 
 section{
     /* padding: 5em 0; */
-    padding: 2rem 0;
+    padding: 2rem 0.01rem;
     text-align: center;
 }
 
@@ -685,6 +685,10 @@ header{
     width: 8em;
 }
 
+.download-btn:hover{
+    transform: scale(1.1);
+}
+
 @media (min-width:768px) {
     #download-app{
     padding-bottom: 0;
@@ -731,9 +735,7 @@ header{
     width: 100%;
 }
 
-.download-btn:hover{
-    transform: scale(1.1);
-}
+
 
 .download-img{
     padding: 0;

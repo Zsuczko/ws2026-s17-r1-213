@@ -14,7 +14,7 @@ const ShopLayout:React.FC<{layout:shoplayoutElements[] , loadedPages:number[], o
 
     const [dragOverIndex, setDragOverIndex] = useState<number | null>(null)
 
-    const [elements, setElements] = useState<shoplayoutElements[]>([
+    const [elements] = useState<shoplayoutElements[]>([
         {name:"Washer (8kg)", class:"washer", src:washingMachine, role:"machine"},
         {name:"Washer (11kg)", class:"washer", src:washingMachine,role:"machine"},
         {name:"Dryer (18kg)", class:"dryer", src:washingMachine, role:"machine"},
@@ -39,6 +39,7 @@ const ShopLayout:React.FC<{layout:shoplayoutElements[] , loadedPages:number[], o
             
             setLayout(newLayoutItem);
         }
+        e.button
     }
 
     
@@ -55,6 +56,7 @@ const ShopLayout:React.FC<{layout:shoplayoutElements[] , loadedPages:number[], o
         newLayoutItem[index] = wallItem
         
         setLayout(newLayoutItem);
+        e.button
     }
 
     const handlerRightClick = (e:React.MouseEvent, index:number)=>{
