@@ -11,7 +11,7 @@
 <body>
     <header>
         <img src="assets/assets/images/sudsy-logo.svg" alt="sudsy-logo" title="sudsy-logo">
-        <!-- <nav class="main-navbar">
+        <nav class="main-navbar">
             <h1><a href="#about-section">About</a></h1>
             <h1><a href="#how-work-section">How it Works</a></h1>
             <h1><a href="#why-to-choose-section">Why Sudsy</a></h1>
@@ -20,14 +20,16 @@
         <nav class="header-nav-button-group">
             <h1><a href="#download-app">Download</a></h1>
             <button>Login</button>
-        </nav> -->
+        </nav>
 
         <label for="hamburger-checkbox" class="hamburger-icon-open"><img src="assets/assets/images/hamburger-icon.svg" alt=""></label>
 
 
 
             <input type="checkbox" id="hamburger-checkbox" class="hamburger-checkbox"/>
-            <div class="overlay"></div>
+            <label for="hamburger-checkbox" class="overlay"></label>
+             <!-- <div class="overlay"></div> -->
+            
    
             <nav class="hamburger-main">
                 <span>
@@ -35,17 +37,17 @@
                 
            
 
-                <label for="hamburger-checkbox" class="hamburger-icon"><img src="assets/assets/images/close-icon.svg" alt=""></label>
+                <label for="hamburger-checkbox" class="hamburger-icon hamburger-icon-open"><img src="assets/assets/images/close-icon.svg" alt=""></label>
             </span>
     
                 <hr>
-                <label for="hamburger-checkbox"><h1><a href="#about-section">About</a></h1></label>
-                <label for="hamburger-checkbox"><h1><a href="#how-work-section">How it Works</a></h1></label>
-                <label for="hamburger-checkbox"><h1><a href="#why-to-choose-section">Why Sudsy</a></h1></label>
-                <label for="hamburger-checkbox"><h1><a href="#location">Locations</a></h1></label>
+                <label for="hamburger-checkbox"><h1><label for="hamburger-checkbox"><a class="hamburger-btn" href="#about-section">About</a></label></h1></label>
+                <label for="hamburger-checkbox"><h1><label for="hamburger-checkbox"><a class="hamburger-btn" href="#how-work-section">How it Works</a></label></h1></label>
+                <label for="hamburger-checkbox"><h1><label for="hamburger-checkbox"><a class="hamburger-btn" href="#why-to-choose-section">Why Sudsy</a></label></h1></label>
+                <label for="hamburger-checkbox"><h1><label for="hamburger-checkbox"><a class="hamburger-btn" href="#location">Locations</a></label></h1></label>
                 <hr>
 
-                <nav class="header-nav-button-group">
+                <nav class="header-nav-button-group-hamburger">
                     <button>Login</button>
                     <h1><a href="#download-app">Download</a></h1>
                 </nav> 
@@ -249,6 +251,7 @@
     <footer>
         <div class="circle footer-circle"></div>
         <img src="assets/assets/images/sudsy-logo.svg" alt="sudsy-logo" title="sudsy-title">
+        <hr>
         <article class="footer-information">
             <a href="#">Privacy Policy</a>
             <div class="footer-vertical-line"></div>
@@ -256,6 +259,7 @@
             <div class="footer-vertical-line"></div>
             <a href="#">Cookie Policy</a>
         </article>
+        <hr>
         <p>© SkillsIT 2025</p>
     </footer>
 </body>
