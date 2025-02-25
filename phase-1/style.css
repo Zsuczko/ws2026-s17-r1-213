@@ -550,6 +550,9 @@ header{
     width: 100%;
     color: black;
     margin: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
 #why-to-choose-section h1{
@@ -564,10 +567,9 @@ header{
 
 .why-card-section{
     display: grid;
-    /* grid-template-columns: repeat(2, 1fr); */
     gap: 2rem 0;
-    /* margin: auto; */
     width: fit-content;
+    margin: auto;
 }
 
 .why-card{
