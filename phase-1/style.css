@@ -31,7 +31,7 @@
 
 html{
     scroll-behavior: smooth;
-    zoom: 1.1; /* It's needed because of chrome */
+    zoom: 1.2; /* It's needed because of chrome */
 }
 
 body{
@@ -356,8 +356,11 @@ header{
     position: relative;
 }
 
+.hero-section span div{
+    margin-top: 1em;
+}
+
 .hero-button-group{
-    margin: 2em 0 0 0;
     z-index: 1;
     position: relative;
     display: flex;
