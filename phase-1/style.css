@@ -25,6 +25,24 @@
     }
 }
 
+@keyframes hamburgerOpen {
+    0%{
+        right:-100%
+    }
+    100%{
+        right: 0;
+    }
+}
+
+@keyframes hamburgerClose {
+    0%{
+        right:0
+    }
+    100%{
+        right: -100%;
+    }
+}
+
 
 
 /* general */
@@ -39,6 +57,10 @@ body{
     font-family: 'PlusJakartaSans';  
 }
 
+.body-wrapped{
+    overflow-x: hidden;
+}
+
 h1{
     color: white;
     font-weight: bold;
@@ -50,10 +72,7 @@ main h1{
     margin: 0.3em;
 }
 
-header{
-    display: flex;
-    margin: 1em;
-}
+
 nav{
     display: flex;
     gap: 2em;
@@ -143,9 +162,10 @@ a{
 
 /* navbar */
 
-header{
+/* header{
     padding: 0.7rem 8%;
-    opacity: 0;
+    display: flex;
+    margin: 1em;
 }
 
 .main-navbar{
@@ -174,12 +194,153 @@ header h1:hover::after{
     width: 100%;
 }
 
-
+*/
 
 .header-nav-button-group h1{
     margin: auto;
     text-align: center;
+} 
+.header-nav-button-group a{
+    font-size: 3em !important;
 }
+
+header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+    position: relative;
+}
+
+.hamburger-icon-open{
+    display: flex;
+    justify-content: flex-end;
+    width: 100%;
+}
+
+
+/* hamburger */
+
+.hamburger-menu{
+    position: absolute;
+    z-index: 2;
+}
+
+.hamburger-checkbox{
+    display: none;
+}
+
+.hamburger-main{
+    position: absolute;
+    background: var(--background-color);
+    z-index: 100;
+    flex-direction: column;
+    padding: 3em;
+    width: 60%;
+    height: 100vh;
+    right: -100%;
+    top: 0;
+    font-size: 0.5em;
+    display: flex;
+    transition: right 0.5s ease;
+}
+
+.hamburger-main hr{
+    width: 100%;
+}
+
+
+.hamburger-main a{
+    font-size: 1.5em;
+}
+
+.hamburger-main h1{
+    font-size: unset;
+}
+
+.hamburger-main span{
+    display: flex;
+    justify-content: space-between;
+
+}
+
+.hamburger-icon{
+    margin: auto;
+}
+
+/* .overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.5); 
+    backdrop-filter: blur(8px);
+    opacity: 0;
+    pointer-events: none; 
+    transition: opacity 0.3s ease-in-out;
+    z-index: 99; 
+} */
+
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(4px);
+    z-index: 20;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none; 
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.hamburger-checkbox:checked ~ .hamburger-main {
+    right: 0;
+}
+
+.hamburger-checkbox:not(:checked) ~ .hamburger-main {
+    right: -100%;
+}
+
+.hamburger-checkbox:checked ~ .overlay {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto; 
+}
+
+.hamburger-checkbox:checked ~ .body-wrapper {
+    height: 100vh;
+    overflow: hidden;
+}
+
+.overlay:has(~ .hamburger-checkbox:checked) {
+   right: -100%;
+   display:none;
+}
+/* 
+
+.hamburger-checkbox:not(:checked) ~ .hamburger-main{
+    animation: hamburgerClose 1s forwards;
+    right: -100%;
+}
+
+.hamburger-checkbox:checked ~ .hamburger-main{
+    animation: hamburgerOpen 1s forwards;
+    right: 0;
+} */
+
+/* .hamburger-checkbox:checked ~ .overlay{
+   opacity: 1;
+}
+
+.hamburger-checkbox:checked ~ body {
+    overflow: hidden;
+    height: 100vh;
+} */
+
 
 
 
@@ -634,6 +795,11 @@ header h1:hover::after{
 @media (min-width:1200px) {
     .location-card-group{
         justify-content: center;
+        gap: 3rem;
+    }
+
+    .location-card{
+        width: 20rem;
     }
 }
 
