@@ -31,7 +31,7 @@
 
 html{
     scroll-behavior: smooth;
-    zoom: 1.3; /* It's needed because of chrome */
+    zoom: 1.1; /* It's needed because of chrome */
 }
 
 body{
@@ -202,6 +202,7 @@ header{
     header h1{
         font-weight: unset;
         position: relative;
+        font-size: 1.3em;
     }
     
     header h1::after{
@@ -311,33 +312,6 @@ header{
     pointer-events: auto; 
 }
 
-/* .hamburger-checkbox:checked ~ .body {
-    overflow: hidden !important;
-} */
-/* 
-
-.hamburger-checkbox:not(:checked) ~ .hamburger-main{
-    animation: hamburgerClose 1s forwards;
-    right: -100%;
-}
-
-.hamburger-checkbox:checked ~ .hamburger-main{
-    animation: hamburgerOpen 1s forwards;
-    right: 0;
-} */
-
-/* .hamburger-checkbox:checked ~ .overlay{
-   opacity: 1;
-}
-
-.hamburger-checkbox:checked ~ body {
-    overflow: hidden;
-    height: 100vh;
-} */
-
-
-
-
 
 /* hero section */
 
@@ -394,6 +368,7 @@ header{
 
 .hero-button-group button{
     padding: 0.8em;
+    font-size: 0.7em;
 }
 
 .hero-circle-one{
@@ -878,6 +853,12 @@ footer{
 .footer-information a{
     color: #579cea;
     text-decoration: none;
+    margin: 0.1em 0;
+}
+.footer-information{
+    display: flex;
+    flex-direction: column;
+    gap: 0.2em;
 }
 footer p{
     margin: 0;
@@ -917,6 +898,7 @@ footer hr{
         gap: 2rem;
         position: relative;
         z-index: 1;
+        flex-direction: row;
     }
     
     .footer-information a{
