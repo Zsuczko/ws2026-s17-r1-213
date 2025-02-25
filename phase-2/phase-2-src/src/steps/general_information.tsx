@@ -27,9 +27,10 @@ const GeneralInformation:React.FC<{
     setPostalCode(postal)
   }
   
-  function nextPage(index:number){
+  async function nextPage(index:number){
     if(name.length<3 || description.length<10 || postalCode.length<4 || city.length<3 || address.length<5 || openFrom.length<5 || openTo.length<5){
       setIsChecking(true)
+
     }
 
     else{
@@ -52,6 +53,15 @@ const GeneralInformation:React.FC<{
       props.onChange(index, newGeneral, props.loadedPages);
     }
   }
+
+  useEffect(()=>{
+    if(isChecking){
+      const firstInvalid = document.querySelector(".error") as HTMLElement;
+      if (firstInvalid) {
+        firstInvalid.focus();
+      }
+    }
+  },[isChecking])
 
 
   useEffect(()=>{
